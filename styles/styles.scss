@@ -1,0 +1,56 @@
+@charset 'utf-8';
+
+/*****************************************************************
+   01. HELPERS
+   Helper functions & non-output snippets
+   (Variables, mixins, functions, etc.)
+*****************************************************************/
+@use "1-helpers/_variables";
+// @use "01-abstracts/mixins";
+
+
+/*****************************************************************
+   02. BASE
+   Reset, typography, global styles
+*****************************************************************/
+@use "2-base/_reset";
+@use "2-base/_globals";
+// @use "02-base/main";
+// @use "02-base/typography";
+
+
+/*****************************************************************
+   03. COMPONENTS
+   Micro-level, reusable components
+   (Each does one thing only. Ex: buttons)
+*****************************************************************/
+@use "3-components/__Nav";
+@use "3-components/__ProjectsList";
+@use "3-components/__Project";
+@use "3-components/__Profile";
+@use "3-components/__Footer";
+// @use "03-components/footer";
+// @use "03-components/buttons";
+
+
+/*****************************************************************
+   04. LAYOUTS
+   Unique combos of components & base styles
+   (Grids, specific page styles, etc.)
+*****************************************************************/
+// @use "04-layouts/container";
+
+
+/*****************************************************************
+   05. UTILITIES
+   Overrides and custom utility classes
+*****************************************************************/
+// @use "05-utilities/display";
+// @use "05-utilities/kellum";
+
+
+/*****************************************************************
+   06. VENDOR/THIRD-PARTY
+*****************************************************************/
+// @use "06-vendor/fontawesome/fontawesome.scss";
+// @use "06-vendor/fontawesome/regular.scss";

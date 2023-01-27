@@ -1,0 +1,34 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 100%;
+    padding: 1rem 2rem;
+
+    &__text {
+        width: 25%;
+
+        &-job {
+            &--active {
+                border-bottom: black solid 2px;
+            }
+        }
+    }
+
+    &__list {
+        display: flex;
+        flex-direction: column;
+        width: 25%;
+
+        &__item {
+            color: gray;
+            padding: 4px 4px;
+            text-decoration: none;
+
+            &--active {
+                color: black;
+            }
+        }
+    }
+
+}

@@ -1,0 +1,13 @@
+.footer {
+    display: flex;
+    align-items: baseline;
+    gap: 3rem;
+
+    &__logo {
+        font-size: 6rem;
+    }
+
+    &__text {
+        font-size: 3rem;
+    }
+}

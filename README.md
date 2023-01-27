@@ -1,4 +1,4 @@
-# Blog 📝
+# Voice actress' portfolio 🎤
 
 Hi 👋 Jiro Jasmin here.  
 This project is a web portfolio of a German voice actress 🎤  

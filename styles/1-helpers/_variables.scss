@@ -1,1 +1,9 @@
-// Put all variables here
+// Colors
+$primary-color: #B2A9EA;
+$primary-hover: #9184e6;
+
+// Local fonts
+@font-face {
+    font-family: Pleasure;
+    src: url("../../public/fonts/PleasureStandardTrial-Regular.woff") format("woff");
+}

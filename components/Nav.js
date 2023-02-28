@@ -8,8 +8,12 @@ function Nav() {
 
     const navItems = [
         {
-            name: 'Home',
-            path: '/'
+            name: 'Audios',
+            path: '/audios'
+        },
+        {
+            name: 'Texts',
+            path: '/texts'
         },
         {
             name: 'About',

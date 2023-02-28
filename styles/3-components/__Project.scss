@@ -1,13 +1,14 @@
 .card-list__item {
     cursor: pointer;
-    filter: grayscale(100%);
-    width: 200px;
-    height: 200px;
-    transition: box-shadow 0.3s ease-in-out; 
+    filter: drop-shadow(0 0 #000);
+    width: 220px;
+    height: 220px;
+    transition: box-shadow 0.5s ease-in-out;
 
     &:hover {
-        transition: box-shadow 0.56s ease-in-out; 
-        box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+        transition: box-shadow 0.3s ease-in-out;
+        box-shadow: 0 14px 28px #b2a9ea81, 0 10px 10px #b2a9ea81;
+        outline: solid .5px $primary-color;
     }
 
     &__cover {
@@ -17,7 +18,8 @@
     }
 
     &--active {
-        filter: grayscale(0%);
+        filter: drop-shadow(0 0 0.75rem $primary-color);
+        outline: solid 2px $primary-color !important;
     }
 
     &__title {
@@ -26,17 +28,24 @@
         text-align: center;
         top: 50%;
         left: 50%;
-        transform: translate(-50%,-50%);
+        transform: translate(-50%, -50%);
         text-shadow: 0 0 5px #fff, 0 0 15px #fff, 0 0 20px #fff,
-        0 0 40px #fff, 0 0 60px #fff, 0 0 10px #fff, 0 0 98px #fff;
+            0 0 40px #fff, 0 0 60px #fff, 0 0 10px #fff, 0 0 98px #fff;
     }
 
     &__description {
         color: gray;
         text-align: center;
         position: absolute;
-        top: 80%;
-        left: 50%;
-        transform: translate(-50%,-50%);
+        width: 200px;
     }
+
+    &__audio-player {
+        display: none;
+    }
+}
+
+.text {
+    display: flex;
+    justify-content: center;
 }

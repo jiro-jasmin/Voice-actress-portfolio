@@ -5,18 +5,18 @@
    Helper functions & non-output snippets
    (Variables, mixins, functions, etc.)
 *****************************************************************/
-@use "1-helpers/_variables";
-// @use "01-abstracts/mixins";
+@import "1-helpers/_variables";
+// @import "01-abstracts/mixins";
 
 
 /*****************************************************************
    02. BASE
    Reset, typography, global styles
 *****************************************************************/
-@use "2-base/_reset";
-@use "2-base/_globals";
-// @use "02-base/main";
-// @use "02-base/typography";
+@import "2-base/_reset";
+@import "2-base/_globals";
+// @import "02-base/main";
+// @import "02-base/typography";
 
 
 /*****************************************************************
@@ -24,13 +24,13 @@
    Micro-level, reusable components
    (Each does one thing only. Ex: buttons)
 *****************************************************************/
-@use "3-components/__Nav";
-@use "3-components/__ProjectsList";
-@use "3-components/__Project";
-@use "3-components/__Profile";
-@use "3-components/__Footer";
-// @use "03-components/footer";
-// @use "03-components/buttons";
+@import "3-components/__Nav";
+@import "3-components/__ProjectsList";
+@import "3-components/__Project";
+@import "3-components/__Profile";
+@import "3-components/__Footer";
+@import "3-components/__404";
+// @import "03-components/buttons";
 
 
 /*****************************************************************
@@ -38,7 +38,7 @@
    Unique combos of components & base styles
    (Grids, specific page styles, etc.)
 *****************************************************************/
-// @use "04-layouts/container";
+@import "4-layouts/__LandingPage";
 
 
 /*****************************************************************

@@ -1,52 +1,127 @@
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-
+import axios from "axios";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { useEffect, useRef, useState } from "react";
 
 function Nav() {
 
-    const router = useRouter();
+  const router = useRouter();
 
-    const navItems = [
-        {
-            name: 'Audios',
-            path: '/audios'
-        },
-        {
-            name: 'Texts',
-            path: '/texts'
-        },
-        {
-            name: 'About',
-            path: '/about'
-        },
-    ];
+  const navItems = [
+    {
+      name: "Hörbeispiele",
+      path: "/bestof",
+    },
+    {
+      name: "Sprecherische Tätigkeiten",
+      path: "/audios",
+    },
+    {
+      name: "Referenzen",
+      path: "/texts",
+    },
+    {
+      name: "Über mich",
+      path: "/about",
+    },
+    {
+      name: "Kontakt",
+      path: "/contact",
+    },
+  ];
 
-    return (
-        <nav className="navbar">
-            <div className="navbar__text">
-                Schreib mir gerne für <br />Anfragen und Kooperationen: <br />
-               <Link href="mailto:hi@aileenwrozyna.de">hi@aileenwrozyna.de</Link>
-            </div>
-            <ul className="navbar__list">
-                {navItems.map(item =>
-                    <li key={item.name}
-                        className={`navbar__list__item${router.asPath === item.path ? ' navbar__list__item--active' : ''}`}
-                    >
-                        <Link href={item.path}>
-                            {item.name}
-                        </Link>
-                    </li>
-                )}
-            </ul>
-            <div className="navbar__text-job navbar__text-job--active">
-                Sprecherische Tätigkeiten
-            </div>
-            <div className="navbar__text-job">
-                Journalistische Arbeiten
-            </div>
+  const [menuOpen, setMenuOpen] = useState(false);
 
-        </nav>
-    )
+  const toggleMenu = () => {
+      setMenuOpen(!menuOpen);
+  };
+
+  const navbarRef = useRef(null);
+
+  const handleDocumentClick = (event) => {
+      if (navbarRef.current && !navbarRef.current.contains(event.target)) {
+          // Clicked outside of navbar, close navbar
+          setMenuOpen(false);
+      }
+  };
+
+  const [scroll, setScroll] = useState(false);
+
+  const handleNavScroll = (event) => {
+    if (window.scrollY > 5) {
+      setScroll(true);
+    } else {
+      setScroll(false);
+    }
+  }
+
+
+  useEffect(() => {
+    document.addEventListener('click', handleDocumentClick);
+
+    document.addEventListener('scroll', handleNavScroll);
+
+    return () => {
+        document.removeEventListener('click', handleDocumentClick);
+        document.addEventListener('scroll', handleNavScroll);
+
+    };
+}, []);
+
+  return (
+    <nav className={`navbar ${scroll && "navbar--scrolled"}`}>
+       <a href="mailto:hi@aileenwrozyna.de" className="navbar__info-mobile">
+          Schreib mir
+        </a>
+      <ul className={`navbar__list ${menuOpen ? " open" : ""}`}>
+        <li className="navbar__list__info-desktop">
+          <div>Schreib mir gerne</div>
+          <a
+            href="mailto:hi@aileenwrozyna.de"
+            className="navbar__list__info-desktop__link"
+          >
+            hi@aileenwrozyna.de
+          </a>
+        </li>
+
+        {navItems.map((item) => (
+          <li
+            key={item.name}
+            className={`navbar__list__item${
+              router.asPath === item.path ? " navbar__list__item--active" : ""
+            }`}
+            onClick={toggleMenu}
+          >
+            <Link href={item.path}>{item.name}</Link>
+          </li>
+        ))}
+      </ul>
+
+      
+                <button
+                    onClick={toggleMenu}
+                    type="button"
+                    className={`burger${menuOpen ? " open" : ""}`}
+                    title="Menu"
+                >
+                    <span className="burger__bun burger__bun__top"></span>
+                    <span className="burger__bun burger__bun__bottom"></span>
+                </button>
+        
+    </nav>
+  );
 }
 
 export default Nav;
+
+export async function getStaticProps() {
+  const content = await axios.get(
+    `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/navbars`
+  );
+
+  return {
+    props: {
+      content: content.data,
+    },
+  };
+}

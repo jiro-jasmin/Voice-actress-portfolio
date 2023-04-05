@@ -3,12 +3,40 @@
     align-items: baseline;
     gap: 3rem;
     font-family: Pleasure, Segoe UI, Roboto, Oxygen, Ubuntu,  sans-serif;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: $background;
 
     &__logo {
-        font-size: 6rem;
+        font-size: 5rem;
+        max-height: 30px;
     }
 
     &__text {
-        font-size: 3rem;
+        font-size: 2.5rem;
+    }
+}
+
+/* Phones with larger screens */
+@media only screen and (max-width: 800px) {
+    .footer {
+        flex-wrap: wrap;
+        gap: .5rem;
+        &__logo {
+            font-size: 4rem;
+        }
+
+        &__text {
+            font-size: 2rem;
+        }
+    }
+}
+
+@media only screen and (max-width: 650px) {
+    .footer {
+        &__text {
+            padding-top: 10px;
+        }
     }
 }

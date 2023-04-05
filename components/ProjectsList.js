@@ -1,88 +1,123 @@
-import { useEffect, useRef, useState } from "react";
-// import Project from "./Project";
+import { useRouter } from "next/router";
+import { useState } from "react";
 
 function ProjectsList({ projects }) {
+  const audios = [
+    ...projects.data.map(
+      (project) =>
+        `${process.env.NEXT_PUBLIC_STRAPI_URL}${project.attributes.audio.data.attributes.url}`
+    ),
+  ];
 
-    const audios = [...projects.data.map((project) => `${process.env.NEXT_PUBLIC_STRAPI_URL}${project.attributes.audio.data.attributes.url}`)];
+  const [activeIndex, setActiveIndex] = useState(-1);
+  const [activeAudio, setActiveAudio] = useState(null);
 
-    const [activeIndex, setActiveIndex] = useState(-1);
-    const [activeAudio, setActiveAudio] = useState(null);
+  const handleClick = (index) => {
+    if (index === activeIndex && activeAudio) {
+      activeAudio.pause();
+      setActiveAudio(null);
+      setActiveIndex(-1);
+    } else {
+      const newAudio = new Audio(audios[index]);
+      if (activeAudio) {
+        activeAudio.pause();
+      }
+      newAudio.play();
+      setActiveAudio(newAudio);
+      setActiveIndex(index);
+      newAudio.ontimeupdate = (e) => handleTimeUpdate(newAudio, activeIndex);
+    }
+  };
 
-    // const [timeSongInfo, setTimeSongInfo] = useState({
-    //     currentTime: 0,
-    //     duration: 0
-    // });
+  const router = useRouter();
 
-    const handleClick = (index) => {
-        if (index === activeIndex) {
-            activeAudio.pause();
-            setActiveAudio(null);
-            setActiveIndex(-1);
-        } else {
-            const newAudio = new Audio(audios[index]);
-            if (activeAudio) {
-                activeAudio.pause();
-            }
-            newAudio.play();
-            setActiveAudio(newAudio);
-            setActiveIndex(index);
-        }
-    };
+  const [timeSongInfo, setTimeSongInfo] = useState({
+    currentTime: 0,
+    duration: 0,
+  });
 
-    // const handleTimeUpdate = (audio, index) => {
-    //     const current = audio.currentTime;
-    //     let duration = 0;
-    //     if(audio.e.target).loadedmetadata {
-    //         duration = audio.duration;
-    //     }
+  const handleTimeUpdate = (audio, index) => {
+    const current = audio.currentTime;
+    let duration = 0;
+    if (audio.e && audio.e.target) {
+      duration = audio.duration;
+    }
 
-    //     if (current === duration) {
-    //         handleClick(index);
-    //     } else {
-    //         let timeSongInfo = {
-    //             currentTime: current,
-    //             duration: duration
-    //         }
-    //         setTimeSongInfo(timeSongInfo);
-    //     }
-    //     return timeSongInfo;
-    // }
+    if (current === duration) {
+      handleClick(index);
+    } else {
+      let timeSongInfo = {
+        currentTime: current,
+        duration: duration,
+      };
+      setTimeSongInfo(timeSongInfo);
+    }
+    return timeSongInfo;
+  };
 
- 
-
-
-
-
+  const getTime = (time) => {
     return (
-        <ul className="card-list">
-            {projects && projects.data.map((project, index) =>
-
-                <li
-                    key={project.attributes.title + index}
-                    className={`card-list__item${index === activeIndex ? ' card-list__item--active' : ''}`}
-                    onClick={() => handleClick(index)}
-                >
-                    <img className="card-list__item__cover" src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${project.attributes.imagecover.data.attributes.url}`} />
-                    <div className="card-list__item__title">
-                        {project.attributes.title}
-                    </div>
-                    <div className="card-list__item__description">
-                        {project.attributes.description}
-                    </div>
-
-                    {/* {project.attributes.audio.data &&
-                        <audio
-                            ref={audioRef}
-                            src={`http://localhost:1337${project.attributes.audio.data.attributes.url}`}
-                            className="card-list__item__audio-player"
-                            controls
-                        />
-                    } */}
-                </li>
-            )}
-        </ul>
-
+      Math.floor(time / 60) + ":" + ("0" + Math.floor(time % 60)).slice(-2)
     );
+  };
+
+  return (
+    <ul
+      className={`
+    ${router.asPath !== "/bestof" ? "card-list" : "card-list-best"}
+    `}
+    >
+      {projects &&
+        projects.data.map((project, index) => (
+          <li
+            key={project.attributes.title + index}
+            className={`
+            ${
+              router.asPath !== "/bestof"
+                ? "card-list__item"
+                : "card-list__item-best"
+            }
+            ${index === activeIndex ? " card-list__item--active" : ""}`}
+            onClick={() => handleClick(index)}
+          >
+            <div className="card-list__item__inner">
+              <div className="card-list__item__inner__front">
+                {router.asPath !== "/bestof" ? (
+                  project.attributes.imagecover.data && (
+                    <img
+                      className="card-list__item__inner__front__cover"
+                      src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${project.attributes.imagecover.data.attributes.url}`}
+                    />
+                  )
+                ) : (
+                  <div className="card-list__item__inner__back__description">
+                    {project.attributes.title}
+                  </div>
+                )}
+                <div className="card-list__item__inner__front__play">
+                  <span className="play-button"></span>
+                  {getTime(timeSongInfo.duration)}
+                </div>
+              </div>
+              <div className="card-list__item__inner__back">
+                <div className="card-list__item__inner__back__title">
+                  {project.attributes.title}
+                </div>
+                {router.asPath !== "/bestof" && (
+                  <div className="card-list__item__inner__back__description">
+                    {project.attributes.description}
+                  </div>
+                )}
+                <div className="card-list__item__inner__back__pause">
+                  <span className="pause-button"></span>
+                  {getTime(timeSongInfo.currentTime)}
+                </div>
+              </div>
+            </div>
+          </li>
+        ))}
+    </ul>
+  );
 }
 
 export default ProjectsList;

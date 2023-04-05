@@ -1,35 +1,166 @@
 .navbar {
+    position: fixed;
+    width: 97%;
+    background-color: $background;
+    z-index: 100;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    gap: 20px;
     max-width: 100%;
     padding: 1rem 2rem;
     font-family: Pleasure, Segoe UI, Roboto, Oxygen, Ubuntu,  sans-serif;
+    transition: all .3s ease;
 
-    &__text {
-        width: 25%;
-
-        &-job {
-            &--active {
-                border-bottom: black solid 2px;
-            }
-        }
+    &--scrolled {
+        transition: all .3s ease;
+        box-shadow: 0 1px 3px rgba(14,14,125,0.12), 0 1px 2px rgba(14,14,125,0.24);
     }
 
     &__list {
         display: flex;
-        flex-direction: column;
-        width: 25%;
+        justify-content: space-between;
+        width: 100%;
+        animation: slide .5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 
         &__item {
-            color: gray;
-            padding: 4px 4px;
             text-decoration: none;
+            display: flex;
+            align-items: start;
 
-            &--active {
-                color: black;
+            a {
+                padding: 4px 12px;
+                text-align: center;
+                border-radius: 15px;
+                border: solid .5px transparent;
+                transition: all .3s ease;
+
+                &:hover {
+                    transition: all .3s ease;
+                    border: solid .5px $font-main;
+                    
+                }
+
+            }
+
+            &--active a {
+                background-color: $primary-color;
+
+                &:hover {
+                    border: solid .5px transparent;
+                }
+            }
+        }
+
+        &__info-desktop {
+            display: block;
+
+            &__link{
+                transition: all .3s ease;
+                
+                &:hover {
+                    color: $primary-hover;
+                    transition: all .3s ease;
+                }
+               
             }
         }
     }
 
+    &__info-mobile {
+        display: none;
+    }
+
+    .burger {
+        display: none;
+    }
+}
+
+/* Tablets */
+@media only screen and (max-width: 900px) {
+
+    .navbar {
+        justify-content: space-between;
+    }
+
+    .navbar__info-mobile {
+        display: block;
+        min-width: 100px;
+        z-index: 50;
+        padding: 4px 12px;
+        text-align: center;
+        border-radius: 15px;
+        border: solid .5px $font-main;
+        transition: all .3s ease;
+
+        &:hover {
+            transition: all .3s ease;
+            background-color: $primary-color;
+            
+        }
+    }
+
+    .navbar__list {
+        display: none;
+
+        &.open {
+            display: flex;
+            position: absolute;
+            z-index: 40;
+            background-color: $background;
+            top: 0;
+            left: 0;
+            width: 100%;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            padding: 45px 0 20px 0;
+            box-shadow: 0 1px 3px rgba(14,14,125,0.12), 0 1px 2px rgba(14,14,125,0.24);
+
+        }
+
+        &__info-desktop {
+            display: none;
+
+        }
+    }
+
+
+    
+
+    .burger {
+        display: block !important;
+        cursor: pointer;
+        padding: 10px;
+        transition: all .5s ease;
+        z-index: 50;
+        background: transparent;
+        border: none;
+    
+        &__bun {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px auto;
+            -webkit-transition: all 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out;
+            background-color: $font-main;
+            
+        }
+      }
+    
+      .open {
+        .burger__bun__top {
+            transform: translateY(4px) rotate(45deg);
+          }
+          .burger__bun__bottom {
+            transform: translateY(-4px) rotate(-45deg);
+          }
+      }
+
+}
+
+// Slide mobile animation on menu
+@keyframes slide {
+    0% { transform: translateY(-1000px); }
+    100% { transform: translateY(0px); }
 }

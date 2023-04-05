@@ -1,4 +1,5 @@
 .profile-card {
+    
     display: flex;
     gap: 3rem;
     justify-content: space-around;
@@ -15,6 +16,22 @@
 
         &__title {
             font-size: 3rem;
+        }
+    }
+}
+
+/* Phones with larger screens */
+@media only screen and (max-width: 767px) {
+    .profile-card {
+        flex-direction: column;
+
+        &__image {
+            max-width: 100%;
+            max-height: unset;
+        }
+
+        &__description {
+            width: unset;
         }
     }
 }

@@ -13,7 +13,7 @@ function MyApp({ Component, pageProps }) {
       <title>Aileen portfolio</title>
     </Head>
     {router.asPath !== '/' && <Nav />}
-    <main>
+    <main className="main">
       <Component {...pageProps} />
     </main>
     {router.asPath !== '/' && <Footer />}

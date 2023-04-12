@@ -1,6 +1,6 @@
 .navbar {
     position: fixed;
-    width: 97%;
+    width: 96%;
     background-color: $background;
     z-index: 100;
     display: flex;
@@ -31,13 +31,12 @@
                 padding: 4px 12px;
                 text-align: center;
                 border-radius: 15px;
-                border: solid .5px transparent;
+                border: solid 1px transparent;
                 transition: all .3s ease;
 
                 &:hover {
                     transition: all .3s ease;
-                    border: solid .5px $font-main;
-                    
+                    border: solid 1px $primary-color;         
                 }
 
             }
@@ -46,7 +45,7 @@
                 background-color: $primary-color;
 
                 &:hover {
-                    border: solid .5px transparent;
+                    border: solid 1px transparent;
                 }
             }
         }
@@ -135,6 +134,7 @@
         z-index: 50;
         background: transparent;
         border: none;
+        padding-right: 15px;
     
         &__bun {
             display: block;
@@ -156,7 +156,13 @@
             transform: translateY(-4px) rotate(-45deg);
           }
       }
+}
 
+/* Tablets */
+@media only screen and (max-width: 500px) {
+    .burger {
+        padding-right: 20px;
+    }
 }
 
 // Slide mobile animation on menu

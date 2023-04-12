@@ -1,9 +1,9 @@
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function ProjectsList({ projects }) {
   const audios = [
-    ...projects.data.map(
+    ...projects.map(
       (project) =>
         `${process.env.NEXT_PUBLIC_STRAPI_URL}${project.attributes.audio.data.attributes.url}`
     ),
@@ -16,7 +16,8 @@ function ProjectsList({ projects }) {
     if (index === activeIndex && activeAudio) {
       activeAudio.pause();
       setActiveAudio(null);
-      setActiveIndex(-1);
+      setActiveIndex(-1); 
+
     } else {
       const newAudio = new Audio(audios[index]);
       if (activeAudio) {
@@ -39,7 +40,7 @@ function ProjectsList({ projects }) {
   const handleTimeUpdate = (audio, index) => {
     const current = audio.currentTime;
     let duration = 0;
-    if (audio.e && audio.e.target) {
+    if (audio) {
       duration = audio.duration;
     }
 
@@ -62,61 +63,104 @@ function ProjectsList({ projects }) {
   };
 
   return (
-    <ul
-      className={`
-    ${router.asPath !== "/bestof" ? "card-list" : "card-list-best"}
-    `}
-    >
-      {projects &&
-        projects.data.map((project, index) => (
-          <li
-            key={project.attributes.title + index}
-            className={`
-            ${
-              router.asPath !== "/bestof"
-                ? "card-list__item"
-                : "card-list__item-best"
-            }
-            ${index === activeIndex ? " card-list__item--active" : ""}`}
-            onClick={() => handleClick(index)}
-          >
-            <div className="card-list__item__inner">
-              <div className="card-list__item__inner__front">
-                {router.asPath !== "/bestof" ? (
-                  project.attributes.imagecover.data && (
-                    <img
-                      className="card-list__item__inner__front__cover"
-                      src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${project.attributes.imagecover.data.attributes.url}`}
-                    />
-                  )
-                ) : (
-                  <div className="card-list__item__inner__back__description">
+    <>
+      {router.asPath === "/bestof" ? (
+        <ul className="preview-list">
+          {projects &&
+            projects.map((project, index) => (
+              <li
+                key={project.attributes.title + index}
+                className={`preview-list__item 
+            ${index === activeIndex ? " preview-list__item--active" : ""}`}
+                onClick={() => handleClick(index)}
+              >
+                <div className="preview-list__item__inner">
+                  <h2 className="preview-list__item__inner__title">
                     {project.attributes.title}
+                  </h2>
+                  {project.attributes.subtitle && (
+                    <h3 className="preview-list__item__inner__subtitle">
+                      {project.attributes.subtitle}
+                    </h3>
+                  )}
+                  <span className="preview-list__item__inner__line"></span>
+                  <div className="preview-list__item__inner__controls">
+                    {index === activeIndex ? (
+                      <div className="button-pause"></div>
+                    ) : (
+                      <div className="button-play"></div>
+                    )}
+                    {index === activeIndex ? (
+                      <div className="duration">
+                        -{" "}
+                        {getTime(
+                          timeSongInfo.duration - timeSongInfo.currentTime
+                        )}
+                      </div>
+                    ) : (
+                      <div>Bespielen</div>
+                    )}
                   </div>
-                )}
-                <div className="card-list__item__inner__front__play">
-                  <span className="play-button"></span>
-                  {getTime(timeSongInfo.duration)}
                 </div>
-              </div>
-              <div className="card-list__item__inner__back">
-                <div className="card-list__item__inner__back__title">
-                  {project.attributes.title}
-                </div>
-                {router.asPath !== "/bestof" && (
-                  <div className="card-list__item__inner__back__description">
-                    {project.attributes.description}
+              </li>
+            ))}
+        </ul>
+      ) : (
+        <ul className="card-list">
+          {projects &&
+            projects.map((project, index) => (
+              <li
+                key={project.attributes.title + index}
+                className={`card-list__item 
+            ${index === activeIndex ? " card-list__item--active" : ""}`}
+                onClick={() => handleClick(index)}
+              >
+                <div className="card-list__item__inner">
+                  <div className="card-list__item__inner__front">
+                    {project.attributes.imagecover.data ? (
+                      <img
+                        className="card-list__item__inner__front__cover"
+                        src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${project.attributes.imagecover.data.attributes.url}`}
+                      />
+                    ) : (
+                      <div className="card-list__item__inner__back__description">
+                        {project.attributes.title}
+                      </div>
+                    )}
+                    <div className="card-list__item__inner__front__play">
+                      <div className="button-play"></div>
+                      <div>Bespielen</div>
+                    </div>
                   </div>
-                )}
-                <div className="card-list__item__inner__back__pause">
-                  <span className="pause-button"></span>
-                  {getTime(timeSongInfo.currentTime)}
+                  <div className="card-list__item__inner__back">
+                    <div className="card-list__item__inner__back__title">
+                      {project.attributes.title}
+                    </div>
+
+                    <div className="card-list__item__inner__back__description">
+                      {project.attributes.description}
+                    </div>
+
+                    <div className="card-list__item__inner__back__pause">
+                      <div className="button-pause"></div>
+                      {index === activeIndex ? (
+                        <div className="duration">
+                          -{" "}
+                          {getTime(
+                            timeSongInfo.duration - timeSongInfo.currentTime
+                          )}
+                        </div>
+                      ) : (
+                        ""
+                      )}
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-          </li>
-        ))}
-    </ul>
+              </li>
+            ))}
+        </ul>
+      )}
+    </>
   );
 }
 

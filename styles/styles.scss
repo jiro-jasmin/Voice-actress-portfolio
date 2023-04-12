@@ -27,7 +27,9 @@
 @import "3-components/__Nav";
 @import "3-components/__ProjectsList";
 @import "3-components/__Project";
+@import "3-components/__Preview";
 @import "3-components/__Profile";
+@import "3-components/__References";
 @import "3-components/__Footer";
 @import "3-components/__404";
 // @import "03-components/buttons";
@@ -39,6 +41,7 @@
    (Grids, specific page styles, etc.)
 *****************************************************************/
 @import "4-layouts/__LandingPage";
+@import "4-layouts/__PortfolioPage";
 
 
 /*****************************************************************

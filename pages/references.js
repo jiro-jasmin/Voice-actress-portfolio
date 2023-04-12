@@ -1,7 +1,7 @@
 import axios from "axios";
 import MarkdownIt from "markdown-it";
 
-function Contact({ data }) {
+function References({ data }) {
   const dataContent = data.data[0].attributes;
 
   const md = new MarkdownIt();
@@ -25,11 +25,11 @@ function Contact({ data }) {
   );
 }
 
-export default Contact;
+export default References;
 
 export async function getStaticProps() {
   const data = await axios.get(
-    `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/contacts`
+    `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/references`
   );
 
   return {

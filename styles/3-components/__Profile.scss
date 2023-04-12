@@ -1,21 +1,25 @@
 .profile-card {
     
     display: flex;
-    gap: 3rem;
+    gap: 20px;
     justify-content: space-around;
-    padding: 0 3rem;
+    padding: 0 20px;
 
     &__image {
         max-width: 50%;
-        max-height: 80vh;
+        height: 80vh;
+        object-fit: cover;
+        border-radius: 10px;
+
     }
 
     &__description {
         width: 50%;
-
-
         &__title {
             font-size: 3rem;
+        }
+        a {
+            text-decoration: underline;
         }
     }
 }
@@ -27,6 +31,8 @@
 
         &__image {
             max-width: 100%;
+            height: auto;
+
             max-height: unset;
         }
 

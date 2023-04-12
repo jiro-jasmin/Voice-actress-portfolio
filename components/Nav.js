@@ -13,19 +13,19 @@ function Nav() {
       path: "/bestof",
     },
     {
-      name: "Sprecherische Tätigkeiten",
-      path: "/audios",
+      name: "Portfolio",
+      path: "/portfolio",
     },
     {
       name: "Referenzen",
-      path: "/texts",
+      path: "/references",
     },
     {
       name: "Über mich",
       path: "/about",
     },
     {
-      name: "Kontakt",
+      name: "Buchung",
       path: "/contact",
     },
   ];

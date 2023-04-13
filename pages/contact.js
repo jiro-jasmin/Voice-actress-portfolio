@@ -3,6 +3,7 @@ import MarkdownIt from "markdown-it";
 
 function Contact({ data }) {
   const dataContent = data.data[0].attributes;
+  console.log("test");
 
   const md = new MarkdownIt();
   const htmlContent = md.render(dataContent.content);

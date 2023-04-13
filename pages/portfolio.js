@@ -41,12 +41,13 @@ function Portfolio({ projects }) {
           >
             All
           </li>
-          {filters.map((filter) => (
+          {filters.map((filter, index) => (
             <li
               className={`filters-list__item${
                 currentFilter === filter ? " filters-list__item--active" : ""
               }`}
               onClick={() => handleFilter(filter)}
+              key={index + filter}
             >
               {filter}
             </li>

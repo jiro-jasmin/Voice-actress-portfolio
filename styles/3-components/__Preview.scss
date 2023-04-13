@@ -97,5 +97,12 @@
     .preview-list__item {
         width: 250px;
         height: 250px;
+
+        &__inner {
+            &__line {
+                width: 250px;
+            }
+        }
+
     }
 }

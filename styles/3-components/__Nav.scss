@@ -1,8 +1,8 @@
 .navbar {
     position: fixed;
-    width: 96%;
+    width: 97%;
     background-color: $background;
-    z-index: 100;
+    z-index: 60;
     display: flex;
     align-items: center;
     gap: 20px;
@@ -79,6 +79,10 @@
 
     .navbar {
         justify-content: space-between;
+
+        .burger {
+            display: block !important;
+        }
     }
 
     .navbar__info-mobile {
@@ -122,41 +126,39 @@
 
         }
     }
+}
 
+.burger {
+    display: block;
+    cursor: pointer;
+    padding: 10px;
+    transition: all .5s ease;
+    z-index: 50;
+    background: transparent;
+    border: none;
+    padding-right: 15px;
 
-    
+    &__bun {
+        display: block;
+        width: 25px;
+        height: 3px;
+        margin: 5px auto;
+        -webkit-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
+        background-color: $font-main;
+        
+    }
 
-    .burger {
-        display: block !important;
-        cursor: pointer;
-        padding: 10px;
-        transition: all .5s ease;
-        z-index: 50;
-        background: transparent;
-        border: none;
-        padding-right: 15px;
-    
-        &__bun {
-            display: block;
-            width: 25px;
-            height: 3px;
-            margin: 5px auto;
-            -webkit-transition: all 0.3s ease-in-out;
-            transition: all 0.3s ease-in-out;
-            background-color: $font-main;
-            
-        }
-      }
-    
-      .open {
+    &.open {
         .burger__bun__top {
             transform: translateY(4px) rotate(45deg);
           }
           .burger__bun__bottom {
             transform: translateY(-4px) rotate(-45deg);
           }
-      }
+    }
 }
+  
 
 /* Tablets */
 @media only screen and (max-width: 500px) {

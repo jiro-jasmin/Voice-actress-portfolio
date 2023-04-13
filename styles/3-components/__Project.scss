@@ -85,6 +85,8 @@
             &__description {
                 padding: 10px;
                 padding-top: 0;
+                overflow-y: auto;
+                max-height: 150px;
             }
 
             &__pause {
@@ -129,11 +131,6 @@
         transform: scale(1.02);
     }
 
-}
-
-.text {
-    display: flex;
-    justify-content: center;
 }
 
 /* Tablets */

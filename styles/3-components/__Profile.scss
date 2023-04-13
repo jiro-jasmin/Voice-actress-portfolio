@@ -15,11 +15,13 @@
 
     &__description {
         width: 50%;
+
         &__title {
             font-size: 3rem;
         }
-        a {
-            text-decoration: underline;
+
+        &__text {
+            padding: 0 !important;
         }
     }
 }

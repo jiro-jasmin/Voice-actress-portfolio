@@ -20,7 +20,7 @@ function Profile({ content }) {
           )}
           {content.content && (
             <section
-              className="profile-card__description__text"
+              className="profile-card__description__text article"
               dangerouslySetInnerHTML={{ __html: htmlContent }}
             ></section>
           )}

@@ -77,10 +77,10 @@ function Nav() {
         <li className="navbar__list__info-desktop">
           <div>Schreib mir gerne</div>
           <a
-            href="mailto:hi@aileenwrozyna.de"
+            href="mailto:hallo@aileenwrozyna.de"
             className="navbar__list__info-desktop__link"
           >
-            hi@aileenwrozyna.de
+            hallo@aileenwrozyna.de
           </a>
         </li>
 

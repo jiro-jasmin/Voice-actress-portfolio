@@ -1,4 +1,5 @@
 import MarkdownIt from "markdown-it";
+import Link from "next/link";
 
 function Profile({ content }) {
   const md = new MarkdownIt();
@@ -24,6 +25,7 @@ function Profile({ content }) {
               dangerouslySetInnerHTML={{ __html: htmlContent }}
             ></section>
           )}
+           <Link className="profile-card__description__info" href="/impressum">Impressum</Link>
         </div>
       </div>
     </>

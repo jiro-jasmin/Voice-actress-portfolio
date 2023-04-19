@@ -23,6 +23,12 @@
         &__text {
             padding: 0 !important;
         }
+
+        &__info {
+            text-decoration: underline;
+            margin: 2rem 0;
+            display: block;
+        }
     }
 }
 

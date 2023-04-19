@@ -28,11 +28,11 @@ function ProjectsList({ projects }) {
         if (activeAudio) {
           activeAudio.pause();
         }
-        newAudio.play().catch((e)=>{
+        newAudio.play().catch((e) => {
           // this error sometimes happens when fetching the audio but gets quickly resolved
           console.log("Error while playing the new audio");
-       })
-       
+        });
+
         setActiveAudio(newAudio);
         setActiveIndex(index);
         newAudio.ontimeupdate = (e) => handleTimeUpdate(newAudio, activeIndex);
@@ -153,7 +153,7 @@ function ProjectsList({ projects }) {
               <React.Fragment key={project.attributes.title + index}>
                 <li
                   className={`card-list__item 
-            ${index === activeIndex ? " card-list__item--active" : ""}`}
+                    ${index === activeIndex ? " card-list__item--active" : ""}`}
                   onClick={() => handleClick(index)}
                 >
                   <div className="card-list__item__inner">
@@ -161,7 +161,7 @@ function ProjectsList({ projects }) {
                       {project.attributes.imagecover.data ? (
                         <img
                           className="card-list__item__inner__front__cover"
-                          src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${project.attributes.imagecover.data.attributes.url}`}
+                          src={project.attributes.imagecover.data.attributes.url}
                           alt=""
                         />
                       ) : (
@@ -256,6 +256,39 @@ function ProjectsList({ projects }) {
                           ></iframe>
                         )}
                       </>
+                    )}
+                    {project.attributes.embedded === "Detektor" && (
+                      <iframe
+                        allow="autoplay"
+                        height="230"
+                        width="100%"
+                        src={`https://detektor.fm/${project.attributes.embeddedid}`}
+                      ></iframe>
+                    )}
+                    {project.attributes.embedded === "Ndr" && (
+                      <iframe
+                        allow="autoplay"
+                        className="modal__video"
+                        src={`https://www.ardmediathek.de/embed/${project.attributes.embeddedid}`}
+                      ></iframe>
+                    )}
+                    {project.attributes.embedded === "Arte" && (
+                      <iframe
+                        className="modal__video"
+                        src={`https://www.arte.tv/player/v7/index.html?json_url=${project.attributes.embeddedid}`}
+                        title="Arte video player"
+                        allowFullScreen
+                      ></iframe>
+                    )}
+                    {project.attributes.embedded === "Other" && (
+                      <a
+                        className="modal__link"
+                        href={project.attributes.embeddedid}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        ➡️ Go to website
+                      </a>
                     )}
                     {!project.attributes.embedded && "No content yet"}
                   </div>

@@ -27,7 +27,7 @@ function References({ data }) {
 
 export default References;
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const data = await axios.get(
     `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/references`
   );

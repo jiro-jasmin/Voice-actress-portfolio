@@ -35,7 +35,7 @@ function Home({ content }) {
         onClick={handleClick}
       >
         <img
-          src={`http://localhost:1337${homeContent.background.data.attributes.url}`}
+          src={homeContent.background.data.attributes.url}
           alt=""
           className="landing-page__background"
         />
@@ -55,7 +55,7 @@ function Home({ content }) {
 
 export default Home;
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const content = await axios.get(
     `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/homes?populate=*`
   );

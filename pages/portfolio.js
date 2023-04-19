@@ -8,12 +8,12 @@ function Portfolio({ projects }) {
   let [currentFilter, setCurrentFilter] = useState(null);
 
   const filters = [
-    "Category 1",
-    "Category 2",
-    "Category 3",
-    "Category 4",
-    "Category 5",
-    "Category 6",
+    "Hörbuch",
+    "Werbung",
+    "Podcast",
+    "Voice Over",
+    "Imagefilm",
+    "Synchron",
   ];
 
   const handleFilter = (filter) => {
@@ -62,7 +62,7 @@ function Portfolio({ projects }) {
 
 export default Portfolio;
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const projects = await axios.get(
     `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/audio-projects?populate=*&sort=date:desc`
   );

@@ -77,7 +77,16 @@
 
         &__card {
             margin: 1rem;
+
+            &__description {
+                font-size: 2rem;
+            }
         }
+
+        &__background {
+            height: 100% !important;
+        }
+    
     }
 
     .btn {

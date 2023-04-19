@@ -55,10 +55,6 @@ function ProjectsList({ projects }) {
     }
   };
 
-  const handleCloseClick = () => {
-    setActiveEmbedded(null);
-  };
-
   useEffect(() => {
     if (activeEmbedded) {
       document.body.classList.add("modal-open");
@@ -153,7 +149,7 @@ function ProjectsList({ projects }) {
               <React.Fragment key={project.attributes.title + index}>
                 <li
                   className={`card-list__item 
-                    ${index === activeIndex ? " card-list__item--active" : ""}`}
+                    ${index === activeIndex && audios[index] !== null ? " card-list__item--active" : ""}`}
                   onClick={() => handleClick(index)}
                 >
                   <div className="card-list__item__inner">
@@ -249,8 +245,9 @@ function ProjectsList({ projects }) {
                         )}
                         {project.attributes.embedded === "ApplePodcasts" && (
                           <iframe
+                            className="modal__podcast"
                             allow="autoplay"
-                            height="200"
+                            height="450"
                             width="100%"
                             src={`https://embed.podcasts.apple.com/de/podcast/${project.attributes.embeddedid}`}
                           ></iframe>

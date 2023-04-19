@@ -70,7 +70,7 @@ function Nav() {
 
   return (
     <nav className={`navbar ${scroll && "navbar--scrolled"}`}>
-       <a href="mailto:hi@aileenwrozyna.de" className="navbar__info-mobile">
+       <a href="mailto:hallo@aileenwrozyna.de" className="navbar__info-mobile">
           Schreib mir
         </a>
       <ul className={`navbar__list ${menuOpen ? " open" : ""}`}>

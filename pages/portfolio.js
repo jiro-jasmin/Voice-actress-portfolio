@@ -32,14 +32,14 @@ function Portfolio({ projects }) {
     <>
       <div className="wrapper">
         <ul className="filters-list">
-          Filters:
+          Kategorien:
           <li
             className={`filters-list__item${
               filtered === projects.data ? " filters-list__item--active" : ""
             }`}
             onClick={removeFilter}
           >
-            All
+            Alles
           </li>
           {filters.map((filter, index) => (
             <li

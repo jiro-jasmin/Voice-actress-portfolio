@@ -1,12 +1,14 @@
 import axios from "axios";
 import ProjectsList from "../components/ProjectsList";
-import useSWR from "swr";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import Footer from "../components/Footer";
 
-function Portfolio({ projects }) {
+function Portfolio({ projects, footer }) {
   let [filtered, setFiltered] = useState(projects.data);
   let [currentFilter, setCurrentFilter] = useState(null);
 
+  console.log(footer.data[0]);
+  
   const filters = [
     "Hörbuch",
     "Werbung",
@@ -29,7 +31,7 @@ function Portfolio({ projects }) {
   };
 
   return (
-    <>
+    <main className="main">
       <div className="wrapper">
         <ul className="filters-list">
           Kategorien:
@@ -53,10 +55,10 @@ function Portfolio({ projects }) {
             </li>
           ))}
         </ul>
-        {/* { */}
         <ProjectsList projects={filtered} />
       </div>
-    </>
+      <Footer text={footer.data[0].attributes.portfolio} />
+    </main>
   );
 }
 
@@ -67,9 +69,14 @@ export async function getServerSideProps() {
     `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/audio-projects?populate=*&sort=date:desc`
   );
 
+  const footer = await axios.get(
+    `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/footers`
+  );
+
   return {
     props: {
       projects: projects.data,
+      footer: footer.data
     },
   };
 }

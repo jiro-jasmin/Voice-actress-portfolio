@@ -284,7 +284,7 @@ function ProjectsList({ projects }) {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        ➡️ Go to website
+                        ➡️ Zur Website
                       </a>
                     )}
                     {!project.attributes.embedded && "No content yet"}

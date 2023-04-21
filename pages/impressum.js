@@ -1,5 +1,6 @@
 import axios from "axios";
 import MarkdownIt from "markdown-it";
+import Footer from "../components/Footer";
 
 function Impressum({ data }) {
   const dataContent = data.data[0].attributes;
@@ -9,18 +10,21 @@ function Impressum({ data }) {
 
   return (
     <>
-      <div className="wrapper">
-        <section className="article">
-          {dataContent.title && (
-            <h1 className="article__title">{dataContent.title}</h1>
-          )}
-          {dataContent.content && (
-            <section
-              dangerouslySetInnerHTML={{ __html: htmlContent }}
-            ></section>
-          )}
-        </section>
-      </div>
+      <main className="main">
+        <div className="wrapper">
+          <section className="article">
+            {dataContent.title && (
+              <h1 className="article__title">{dataContent.title}</h1>
+            )}
+            {dataContent.content && (
+              <section
+                dangerouslySetInnerHTML={{ __html: htmlContent }}
+              ></section>
+            )}
+          </section>
+        </div>
+      </main>
+      <Footer />
     </>
   );
 }

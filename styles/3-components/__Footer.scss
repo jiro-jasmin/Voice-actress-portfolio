@@ -1,17 +1,18 @@
 .footer {
     display: flex;
     align-items: baseline;
-    gap: 3rem;
+    gap: 2.5rem;
     font-family: Pleasure, Segoe UI, Roboto, Oxygen, Ubuntu,  sans-serif;
     position: fixed;
     bottom: 0;
-    width: 100%;
+    width: 97vw;
     background-color: $background;
     padding-left: 20px;
 
     &__logo {
         font-size: 5rem;
-        max-height: 30px;
+        max-height: 40px;
+        margin-bottom: 20px;
     }
 
     &__text {
@@ -19,13 +20,15 @@
     }
 }
 
-/* Phones with larger screens */
-@media only screen and (max-width: 800px) {
+/* Tablets */
+@media only screen and (max-width: 900px) {
     .footer {
         flex-wrap: wrap;
         gap: .5rem;
         &__logo {
             font-size: 4rem;
+            margin-bottom: 6px;
+
         }
 
         &__text {
@@ -34,10 +37,10 @@
     }
 }
 
-@media only screen and (max-width: 650px) {
+@media only screen and (max-width: 400px) {
     .footer {
         &__text {
-            padding-top: 10px;
+            font-size: 1.8rem;
         }
     }
 }

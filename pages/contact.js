@@ -1,6 +1,7 @@
 import axios from "axios";
 import MarkdownIt from "markdown-it";
 import Footer from "../components/Footer";
+import Head from "next/head";
 
 function Contact({ data, footer }) {
   const dataContent = data.data[0].attributes;
@@ -10,6 +11,11 @@ function Contact({ data, footer }) {
 
   return (
     <>
+      <Head>
+        <title>
+          Buchung | Aileen Wrozyna, Sprecherin, Moderatorin & Voice Actress
+        </title>
+      </Head>
       <main className="main">
         <div className="wrapper">
           <section className="article">
@@ -43,7 +49,7 @@ export async function getServerSideProps() {
   return {
     props: {
       data: data.data,
-      footer: footer.data
+      footer: footer.data,
     },
   };
 }

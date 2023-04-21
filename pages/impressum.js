@@ -1,6 +1,7 @@
 import axios from "axios";
 import MarkdownIt from "markdown-it";
 import Footer from "../components/Footer";
+import Head from "next/head";
 
 function Impressum({ data }) {
   const dataContent = data.data[0].attributes;
@@ -10,6 +11,11 @@ function Impressum({ data }) {
 
   return (
     <>
+      <Head>
+        <title>
+          Impressum | Aileen Wrozyna, Sprecherin, Moderatorin & Voice Actress
+        </title>
+      </Head>
       <main className="main">
         <div className="wrapper">
           <section className="article">

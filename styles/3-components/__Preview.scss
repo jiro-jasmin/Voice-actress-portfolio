@@ -106,3 +106,18 @@
 
     }
 }
+
+/* Wide screen */
+@media only screen and (min-width: 1450px) {
+    .preview-list__item {
+        width: 300px;
+        height: 300px;
+
+        &__inner {
+            &__line {
+                width: 300px;
+            }
+        }
+
+    }
+}

@@ -1,0 +1,6 @@
+# Allow all crawlers
+User-agent: *
+Allow: /
+
+Sitemap: https://aileenwrozyna.de/sitemap.xml
+Sitemap: https://www.aileenwrozyna.de/sitemap.xml

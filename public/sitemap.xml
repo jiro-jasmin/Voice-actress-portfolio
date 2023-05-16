@@ -1,0 +1,33 @@
+<!--?xml version="1.0" encoding="UTF-8"?-->
+   <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+     <url>
+       <loc>http://www.aileenwrozyna.de</loc>
+       <lastmod>2023-05-16</lastmod>
+       <priority>1.00</priority>
+     </url>
+      <url>
+       <loc>http://www.aileenwrozyna.de/bestof</loc>
+       <lastmod>2023-05-16</lastmod>
+       <priority>0.80</priority>
+     </url>
+      <url>
+       <loc>http://www.aileenwrozyna.de/portfolio</loc>
+       <lastmod>2023-05-16</lastmod>
+       <priority>0.80</priority>
+     </url>
+      <url>
+       <loc>http://www.aileenwrozyna.de/references</loc>
+      <lastmod>2023-05-16</lastmod>
+       <priority>0.80</priority>
+     </url>
+      <url>
+       <loc>http://www.aileenwrozyna.de/about</loc>
+       <lastmod>2023-05-16</lastmod>
+       <priority>0.80</priority>
+     </url>
+      <url>
+       <loc>http://www.aileenwrozyna.de/contact</loc>
+        <lastmod>2023-05-16</lastmod>
+       <priority>0.80</priority>
+     </url>
+   </urlset>
